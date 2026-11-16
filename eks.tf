@@ -8,8 +8,8 @@ resource "aws_eks_cluster" "pathnex" {
   }
 
   vpc_config {
-    subnet_ids = concat(data.aws_subnets.public.ids)
-    security_group_ids = concat(data.aws_security_groups.default.ids)
+    subnet_ids = data.aws_subnets.public.ids
+    security_group_ids = data.aws_security_groups.default.ids
     endpoint_public_access  = true
     endpoint_private_access = true
     public_access_cidrs = [var.All-IPV4]
