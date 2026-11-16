@@ -139,8 +139,8 @@ resource "aws_eks_pod_identity_association" "cluster_autoscaler" {
 resource "aws_iam_role" "eks_cluster" {
   name = "${var.cluster_name}_dev_eks_cluster"
   assume_role_policy = jsonencode({
-    version = "2012-10-17"
-    statement = [{
+    Version = "2012-10-17"
+    Statement = [{
       Action = "sts:AssumeRole"
       Effect = "Allow"
       Sid = ""
