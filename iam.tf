@@ -137,7 +137,7 @@ resource "aws_eks_pod_identity_association" "cluster_autoscaler" {
 
 #Create IAM Cluster ROLE for EKS
 resource "aws_iam_role" "eks_cluster" {
-  name = "dev_eks_cluster"
+  name = "${var.cluster_name}_dev_eks_cluster"
   assume_role_policy = jsonencode({
     version = "2012-10-17"
     statement = [{
@@ -145,7 +145,7 @@ resource "aws_iam_role" "eks_cluster" {
       Effect = "Allow"
       Sid = ""
       Principal = {
-        Service = "ec2.amazonaws.com"
+        Service = "eks.amazonaws.com"
       }
     },
     ]
@@ -154,7 +154,7 @@ resource "aws_iam_role" "eks_cluster" {
 
 #Attach the above policy
 resource "aws_iam_policy_attachment" "eks_cluster_policy" {
-  name       = "dev_eks_cluster_policy"
+  name = "${var.cluster_name}_dev_eks_cluster_policy"
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   roles = [aws_iam_role.eks_cluster.name]
 }

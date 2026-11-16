@@ -1,6 +1,7 @@
 resource "aws_eks_cluster" "pathnex" {
   name     = var.cluster_name
-  role_arn = var.IAMARN
+  #ARN OF IAM Cluster ROLE for EKS
+  role_arn = aws_iam_role.eks_cluster.arn
   version  = var.EKSVersion
 
   upgrade_policy {
