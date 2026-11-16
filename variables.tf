@@ -22,8 +22,8 @@ variable "IAMARN" {
 }
 
 variable "VPCDefault" {
-  type = string
-  default = "True"
+  type = bool
+  default = true
 }
 
 #variable "SubnetDefault" {

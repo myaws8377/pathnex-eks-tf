@@ -1,8 +1,6 @@
 #Auto Discover VPC and Subnets
 data "aws_vpc" "DefaultSelected" {
-  tags = {
-    Name = var.VPCDefault
-  }
+  default = var.VPCDefault
 }
 
 data "aws_subnets" "public" {
@@ -16,6 +14,6 @@ data "aws_subnets" "public" {
 data "aws_security_groups" "default" {
   filter {
     name = "default-sg"
-    values = data.aws_security_groups.default.ids
+    values = data.aws_vpc.DefaultSelected.id
   }
 }
