@@ -13,7 +13,11 @@ data "aws_subnets" "public" {
 
 data "aws_security_groups" "default" {
   filter {
-    name = "default-sg"
-    values = data.aws_vpc.DefaultSelected.id
+    name = "vpc-id"
+    values = [data.aws_vpc.DefaultSelected.id]
+  }
+  filter {
+    name = "group-name"
+    values = ["default"]
   }
 }
